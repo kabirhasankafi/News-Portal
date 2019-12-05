@@ -1,0 +1,68 @@
+@media (max-width: 767px){
+    .header-logo{
+       
+        height: 180px;
+        width: auto;
+    }
+    .logo-area{
+       
+        margin-top: 20px;
+		
+    }
+    .logo-area img{
+	  margin-left: 40px;
+    }
+    .logo-area p{
+        color: #fff;
+		font-size:15px;
+		margin-left: 140px;
+    }
+    .advertisement-area{
+        margin-left: 30px;
+        margin-top: 0px;
+    }
+    .advertisement-area img{
+      margin-bottom: 20px;
+    }
+    .top-stories-bar .top-stories-label .label-txt {
+		font-size: 16px;
+	}
+	.top-stories-bar .top-stories-lists .marquee a {
+		padding-left: 30px;
+	}
+}
+@media (max-width: 575px){
+    .top-stories-bar {
+		background-color: transparent;
+        height: auto;
+        padding-left: 0px;
+	}
+	.top-stories-bar .top-stories-label {
+		float: none;
+		z-index: 1;
+		display: block;
+		text-align: center;
+		padding-right: 15px;
+		padding-top: 8px;
+		padding-bottom: 5px;
+	}
+	.top-stories-bar:before,
+	.top-stories-bar .top-stories-label:after {
+		display: none;
+	}
+	.top-stories-bar .top-stories-label .top-stories-label-wrap {
+		display: inline-block;
+		height: auto;
+		padding-top: 0;
+		padding-bottom: 0;
+		min-height: 30px;
+	}
+	.top-stories-bar .top-stories-lists {
+		padding: 0;
+		background-color: #ffffff;
+		z-index: 1;
+	}
+	.top-stories-bar .top-stories-lists:after {
+		display: none;
+	}
+}
