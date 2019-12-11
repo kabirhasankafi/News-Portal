@@ -1,15 +1,33 @@
 <?php
-    include 'zzz-dbConnect.php';
-    session_start();
+include 'zzz-dbConnect.php';
+session_start();
 
+$username='';
+$email='';
+$subject='';
+$message='';
+
+if(isset($_POST['send'])){
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $subject = $_POST["subject"];
+    $message = $_POST["message"];
+
+    $sql = "INSERT INTO contact (username, email, subject, message, status) VALUES ('".$username."', '".$email."', '".$subject."', '".$message."', '0')";
+    mysqli_query($link, $sql);
+    header('Location: index.php');
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Daily News</title>
-    
+
     <!-- link-area-start -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -18,48 +36,46 @@
     <link rel="stylesheet" href="CSS/owl.carousel.min.css">
     <link rel="stylesheet" href="CSS/animate.min.css">
     <!-- link-area-end -->
-     
+
 </head>
+
 <body>
-<!-- header-area-start -->
-   
-<?php include 'zzz-header.php';?>
+    <!-- header-area-start -->
+
+    <?php include 'zzz-header.php'; ?>
+
+    <!-- header-area-end -->
+
+    <!-- contact-area-start -->
+
+    <div class="fixed-background">
+        <div class="overlay-fixed">
+            <h1 class="wow zoomIn">Contact Us</h1>
+        </div>
+    </div>
+    <?php
+
+    if (isset($_POST['send'])) {
+        $name = $_POST['username'];
+        $mailFrom = $_POST['mail'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+
+        $msg = $name .  $mailFrom . $subject .  $message;
+
+        mail('kabirhasankafi07@gmail.com', 'This is our website', $msg);
+    }
+    ?>
+
     
-<!-- header-area-end -->
+    <section class="contact sp-140" id="contact">
 
-<!-- contact-area-start -->
-
-<div class="fixed-background">
-  <div class="overlay-fixed">
-    <h1 class="wow zoomIn">Contact Us</h1>
-  </div>
-</div>
-<?php
-
-if (isset($_POST['send'])){
-    $name = $_POST['username'];
-    $mailFrom = $_POST['mail'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
-
-   $msg = $name .  $mailFrom . $subject .  $message;
-
-    mail('kabirhasankafi07@gmail.com','This is our website', $msg);
-}
-?>
-
-
-
-
-
-<section class="contact sp-140" id="contact">
-    
-     <div class="section-style"></div>
+        <div class="section-style"></div>
         <div class="info-content">
             <div class="col-40 col-100 wow slideInLeft">
                 <div class="contact-info">
                     <h5>our Address</h5>
-                    <p>123, Atish Diponkar Street, North Mugdha,  <br>Dhaka-1214</p>
+                    <p>123, Atish Diponkar Street, North Mugdha, <br>Dhaka-1214</p>
                     <h5>Call Us</h5>
                     <p>+088 01871-014739<br>
                         +088 01726-023205</p>
@@ -68,22 +84,22 @@ if (isset($_POST['send'])){
                 </div>
             </div>
             <div class="col-60 col-100 wow slideInRight">
-                <form action="">
-                    <input class="form-control" type="text" placeholder="Name" name="username">
-                    <input class="form-control" type="email" placeholder="Email" name="mail">
-                    <input class="form-control" type="text" placeholder="Subject" name="subject">
-                    <textarea class="form-control" name="message" id="" cols="10" rows="5" placeholder="message"></textarea>
+                <form method="POST">
+                    <input class="form-control" type="text" placeholder="Name" name="username" required>
+                    <input class="form-control" type="email" placeholder="Email" name="email" required>
+                    <input class="form-control" type="text" placeholder="Subject" name="subject" required>
+                    <textarea class="form-control" name="message" id="" cols="10" rows="5" placeholder="message" required></textarea>
                     <button type="submit" name="send">Send Message</button>
                 </form>
             </div>
         </div>
-   
-</section>
-<div class="contact-map">
+
+    </section>
+    <div class="contact-map">
         <div class="main-stories-category">
-                <h6>LOCATION</h6>
-                
-            </div>
+            <h6>LOCATION</h6>
+
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="map">
@@ -91,37 +107,38 @@ if (isset($_POST['send'])){
                 </div>
             </div>
         </div>
-    
-</div>
+
+    </div>
 
 
-<!-- contact-area-end -->
+    <!-- contact-area-end -->
 
-<!-- last-area-end -->
-<?php include 'zzz-footer.php';?>
+    <!-- last-area-end -->
+    <?php include 'zzz-footer.php'; ?>
 
-<div class="arrow-top"> <i class="fas fa-arrow-up"></i> </div>
+    <div class="arrow-top"> <i class="fas fa-arrow-up"></i> </div>
 
-<!-- footer-area-end -->
-
-
+    <!-- footer-area-end -->
 
 
 
-<!-- link-area-start -->
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="JS/jquery-3.3.1.min.js"></script>
-<script src="JS/owl.carousel.min.js"></script>
-<script src="JS/wow.min.js"></script>
-<script src="JS/main.js"></script>
-<script src="JS/customs.js"></script>
-<script>
+
+    <!-- link-area-start -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="JS/jquery-3.3.1.min.js"></script>
+    <script src="JS/owl.carousel.min.js"></script>
+    <script src="JS/wow.min.js"></script>
+    <script src="JS/main.js"></script>
+    <script src="JS/customs.js"></script>
+    <script>
         new WOW().init();
-</script>
-<!-- link-area-end -->
+    </script>
+    <!-- link-area-end -->
 
 </body>
+
 </html>

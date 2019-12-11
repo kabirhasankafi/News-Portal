@@ -144,6 +144,7 @@ if (isset($_POST['post'])) {
                                 <div class="admin-section-title">
                                     <h2>Running Post</h2>
                                 </div>
+
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -157,6 +158,27 @@ if (isset($_POST['post'])) {
                                     <tbody>
 
                                         <?php
+                                        if (isset($_POST['deleteOldPost'])) {
+                                            $sql = 'select * from post';
+                                            $result = mysqli_query($link, $sql);
+
+                                            $date = date_create();
+                                            $endDateTemp = date_format($date, "d-m-Y");
+                                            $end_date = strtotime($endDateTemp); //Today date-time
+
+                                            while ($row = mysqli_fetch_array($result)) {
+
+                                                $start_date = strtotime($row['DateTime']);
+                        
+                                                if (($end_date - $start_date) / 60 / 60 / 24 >= 3) {
+                        
+                                                    $sql = 'delete from post where Post_ID='.$row['Post_ID'];
+                                                    mysqli_query($link, $sql);
+
+                                                }
+                                            }
+                                        }
+
                                         $sql = 'select * from Post, user, category where post.User_ID=user.ID and post.Cat_ID=category.Cat_ID ORDER by Post_ID DESC';
                                         $run = mysqli_query($link, $sql);
                                         while ($row = mysqli_fetch_assoc($run)) {
@@ -183,33 +205,50 @@ if (isset($_POST['post'])) {
 
                                     </tbody>
                                 </table>
+
+                                <!-- Delete post -->
+                                <form method="POST">
+                                    <button type="submit" name="deleteOldPost">Delete old news</button>
+                                </form>
                             </div>
 
                         </div>
-                        <div class="col-md-12 grid-item postrequest"> 
+
+                        <!-- Message part -->
+                        <div class="col-md-12 grid-item postrequest">
                             <div class="massage-from-user">
                                 <div class="admin-section-title">
                                     <h2>Massage</h2>
                                 </div>
-                                <div class="all-massage">
-                                    <div class="msg-user-id">
-                                        <p><b>Name</b></p>
-                                        <p>Date</p>
-                                    </div>
-                                    <div class="msg-subject">
-                                        <p><b>Subject</b></p>
-                                    </div>
-                                    <div class="massage">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, ea perferendis? Incidunt praesentium eaque ratione, quasi molestiae hic, consectetur ullam eos ut mollitia odio et id repudiandae laudantium, ipsum fugiat.</p>
-                                    </div>
-                                    <div class="msg-reply">
-                                         <textarea name="reply" id="" cols="90" rows="5"></textarea>
-                                    </div>
-                                    <button type="submit" name="send">Send</button>
 
-                                </div>
+                                <?php
+                                $sql = 'select * from contact where Status=0';
+                                $result = mysqli_query($link, $sql);
+
+                                while ($row = mysqli_fetch_array($result)) {
+                                    ?>
+
+                                    <div class="all-massage">
+                                        <div class="msg-user-id">
+                                            <p><b><?php echo $row['Username'] ?></b></p>
+                                        </div>
+                                        <div class="msg-subject">
+                                            <p><b><?php echo $row['Subject'] ?></b></p>
+                                        </div>
+                                        <div class="massage">
+                                            <p><?php echo $row['Message'] ?></p>
+                                        </div>
+                                        <!-- <div class="msg-reply">
+                                            <textarea name="reply" id="" cols="90" rows="5"></textarea>
+                                        </div>
+                                        <button type="submit" name="send">Send</button> -->
+                                        <a href="messageReply.php?mid=<?php echo $row['Con_ID'] ?>">Reply</a>
+                                    </div>
+                                <?php } ?>
+
                             </div>
                         </div>
+
                         <div class="col-md-12 grid-item massage"> </div>
 
                     </div>

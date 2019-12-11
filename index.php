@@ -131,7 +131,7 @@ include 'zzz-dbConnect.php';
 
                                 <div class="carousel-item">
                                 <?php
-                                $sql = 'select * from Post where Cat_ID=4 order by Post_ID DESC LIMIT 1';
+                                $sql = 'select * from Post, user where Cat_ID=4 and user.ID=post.User_ID order by Post_ID DESC LIMIT 1';
                                 $result = mysqli_query($link, $sql);
                                 $row = mysqli_fetch_array($result);
                                 
