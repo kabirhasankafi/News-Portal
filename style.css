@@ -742,10 +742,11 @@ body {
 }
 .health-stories-img{
 	overflow: hidden;
-	height: 240px;
+	
 }
 .health-stories-img img{
-	
+	height: 250px;
+	width: 100%;
 	transition: all ease-in-out .5s;
     -webkit-transition: all ease-in-out .5s;
 	-moz-transition: all ease-in-out .5s;
@@ -809,10 +810,11 @@ body {
 }
  .technology-stories-img{
 	overflow: hidden;
-	height: 240px;
+	
 }
  .technology-stories-img img{
-	
+	height: 250px;
+	width: 100%;
 	transition: all ease-in-out .5s;
     -webkit-transition: all ease-in-out .5s;
 	-moz-transition: all ease-in-out .5s;

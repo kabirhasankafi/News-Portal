@@ -34,7 +34,19 @@
     <h1 class="wow zoomIn">Contact Us</h1>
   </div>
 </div>
+<?php
 
+if (isset($_POST['send'])){
+    $name = $_POST['username'];
+    $mailFrom = $_POST['mail'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+   $msg = $name .  $mailFrom . $subject .  $message;
+
+    mail('kabirhasankafi07@gmail.com','This is our website', $msg);
+}
+?>
 
 
 
@@ -57,11 +69,12 @@
             </div>
             <div class="col-60 col-100 wow slideInRight">
                 <form action="">
-                    <input class="form-control" type="text" placeholder="Name">
-                    <input class="form-control" type="email" placeholder="Email">
-                    <input class="form-control" type="text" placeholder="Subject">
-                    <textarea class="form-control" name="" id="" cols="10" rows="5" placeholder="message"></textarea>
-                    <input class="mb-0" type="submit" value="send message"> </form>
+                    <input class="form-control" type="text" placeholder="Name" name="username">
+                    <input class="form-control" type="email" placeholder="Email" name="mail">
+                    <input class="form-control" type="text" placeholder="Subject" name="subject">
+                    <textarea class="form-control" name="message" id="" cols="10" rows="5" placeholder="message"></textarea>
+                    <button type="submit" name="send">Send Message</button>
+                </form>
             </div>
         </div>
    

@@ -88,51 +88,68 @@ include 'zzz-dbConnect.php';
                                 $result = mysqli_query($link, $sql);
                                 $row = mysqli_fetch_array($result);
 
+
+                        
+
                                 ?>
                                 <div class="carousel-item active">
-                                    <img src="lib/image/slider 1.jpg" class="d-block w-100" alt="picture">
+                                    <img src="<?php echo $row['Image'] ?>" class="d-block w-100" alt="picture">
                                     <div class="main-stories-btn">
-                                        <a href="#"> <b>Category</b> </a> <a href="#"><b>Tag</b></a>
+                                        <a href="#"> <b>National</b> </a> 
                                     </div>
                                     <div class="main-stories-title">
-                                        <a href="#">
-                                            <h3>Hong Kong protest leaders warn of threat to civil rights</h3>
+                                        <a href="single.php?pid=<?php echo $row['Post_ID'] ?>">
+                                            <h3><?php echo $row['Title'] ?></h3>
                                         </a>
                                     </div>
                                     <div class="main-stories-date">
-                                        <a href="#">Oct 13,2019</a>/<a href="#">Admin</a>
+                                        <a href="#"><?php echo $row['DateTime'] ?></a>/<a href="#"><?php echo $who ?></a>
                                     </div>
                                 </div>
 
 
 
                                 <div class="carousel-item">
-                                    <img src="lib/image/slider 1.jpg" class="d-block w-100" alt="picture">
+                                <?php
+                                $sql = 'select * from Post where Cat_ID=2 order by Post_ID DESC LIMIT 1';
+                                $result = mysqli_query($link, $sql);
+                                $row = mysqli_fetch_array($result);
+                                ?>
+                                <img src="<?php echo $row['Image'] ?>" class="d-block w-100" alt="picture">
                                     <div class="main-stories-btn">
-                                        <a href="#"> <b>Category</b> </a> <a href="#"><b>Tag</b></a>
+                                        <a href="#"> <b>International</b> </a> 
                                     </div>
                                     <div class="main-stories-title">
-                                        <a href="#">
-                                            <h3>Hong Kong protest</h3>
+                                        <a href="single.php?pid=<?php echo $row['Post_ID'] ?>">
+                                            <h3><?php echo $row['Title'] ?></h3>
                                         </a>
                                     </div>
                                     <div class="main-stories-date">
-                                        <a href="#">Oct 13,2019</a>/<a href="#">Admin</a>
+                                        <a href="#"><?php echo $row['DateTime'] ?></a>/<a href="#"><?php echo $who ?></a>
                                     </div>
                                 </div>
 
                                 <div class="carousel-item">
-                                    <img src="lib/image/slider 1.jpg" class="d-block w-100" alt="picture">
+                                <?php
+                                $sql = 'select * from Post where Cat_ID=4 order by Post_ID DESC LIMIT 1';
+                                $result = mysqli_query($link, $sql);
+                                $row = mysqli_fetch_array($result);
+                                
+                                $who = '';
+                                if ($row['UserType'] == 'Admin') $who = 'Admin';
+                                else $who = $row['Username'];
+                                ?>
+                                <img src="<?php echo $row['Image'] ?>" class="d-block w-100" alt="picture">
                                     <div class="main-stories-btn">
-                                        <a href="#"> <b>Category</b> </a> <a href="#"><b>Tag</b></a>
+                                        <a href="#"> <b>Politics</b> </a> 
                                     </div>
                                     <div class="main-stories-title">
-                                        <a href="#">
-                                            <h3>Hong Kong protest leaders warn of threat to civil rights</h3>
+                                        <a href="single.php?pid=<?php echo $row['Post_ID'] ?>">
+                                            <h3><?php echo $row['Title'] ?></h3>
                                         </a>
                                     </div>
                                     <div class="main-stories-date">
-                                        <a href="#">Oct 13,2019</a>/<a href="#">Admin</a>
+                                        <a href="#"><?php echo $row['DateTime'] ?></a>/<a href="#"><?php echo $who ?></a>
                                     </div>
                                 </div>
                             </div>
@@ -217,23 +234,7 @@ include 'zzz-dbConnect.php';
 
                             <?php }
                             ?>
-                            <!-- trending-stories2
-                            <div class="trending-stories2">
-                                <div class="trending-stories-img">
-                                    <img src="lib/image/editors-pick-1.jpg" class="img-fluid" alt="picture">
-                                </div>
-                                <div class="trending-stories-btn">
-                                    <a href="#"> <b>Category</b> </a> <a href="#"><b>Tag</b></a>
-                                </div>
-                                <div class="trending-stories-title">
-                                    <a href="#">
-                                        <h3>Best Classic Film Cameras</h3>
-                                    </a>
-                                </div>
-                                <div class="trending-stories-date">
-                                    <a href="#">Oct 13,2019</a>/<a href="#">Admin</a>
-                                </div>
-                            </div>   -->
+                        
 
                         </div>
                     </div>

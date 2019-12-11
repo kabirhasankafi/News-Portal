@@ -186,7 +186,30 @@ if (isset($_POST['post'])) {
                             </div>
 
                         </div>
-                        <div class="col-md-12 grid-item postrequest"> </div>
+                        <div class="col-md-12 grid-item postrequest"> 
+                            <div class="massage-from-user">
+                                <div class="admin-section-title">
+                                    <h2>Massage</h2>
+                                </div>
+                                <div class="all-massage">
+                                    <div class="msg-user-id">
+                                        <p><b>Name</b></p>
+                                        <p>Date</p>
+                                    </div>
+                                    <div class="msg-subject">
+                                        <p><b>Subject</b></p>
+                                    </div>
+                                    <div class="massage">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, ea perferendis? Incidunt praesentium eaque ratione, quasi molestiae hic, consectetur ullam eos ut mollitia odio et id repudiandae laudantium, ipsum fugiat.</p>
+                                    </div>
+                                    <div class="msg-reply">
+                                         <textarea name="reply" id="" cols="90" rows="5"></textarea>
+                                    </div>
+                                    <button type="submit" name="send">Send</button>
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12 grid-item massage"> </div>
 
                     </div>
