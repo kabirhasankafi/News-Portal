@@ -30,7 +30,7 @@ if (isset($_POST['post'])) {
         if ($fileError === 0) {
             if ($fileSize < 1000000) {
                 $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-                $fileDestination = 'lib/image/' . $fileNameNew;
+                $fileDestination = 'lib/upload/' . $fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
             } else {
                 echo "Your file is too big!";
@@ -207,9 +207,11 @@ if (isset($_POST['post'])) {
                                 </table>
 
                                 <!-- Delete post -->
-                                <form method="POST">
+                                <div class="clear-old-news">
+                                  <form method="POST">
                                     <button type="submit" name="deleteOldPost">Delete old news</button>
-                                </form>
+                                  </form>
+                                </div>
                             </div>
 
                         </div>
@@ -230,10 +232,10 @@ if (isset($_POST['post'])) {
 
                                     <div class="all-massage">
                                         <div class="msg-user-id">
-                                            <p><b><?php echo $row['Username'] ?></b></p>
+                                            <p><b><i class="fas fa-user"></i>   <?php echo $row['Username'] ?></b></p>
                                         </div>
                                         <div class="msg-subject">
-                                            <p><b><?php echo $row['Subject'] ?></b></p>
+                                            <p><b>Subject:  </b><?php echo $row['Subject'] ?></p>
                                         </div>
                                         <div class="massage">
                                             <p><?php echo $row['Message'] ?></p>
@@ -244,6 +246,7 @@ if (isset($_POST['post'])) {
                                         <button type="submit" name="send">Send</button> -->
                                         <a href="messageReply.php?mid=<?php echo $row['Con_ID'] ?>">Reply</a>
                                     </div>
+                                    <div class="line"></div>
                                 <?php } ?>
 
                             </div>
@@ -257,6 +260,7 @@ if (isset($_POST['post'])) {
         </div>
     </div>
 
+    <div class="arrow-top"> <i class="fas fa-arrow-up"></i> </div>
 
 
 

@@ -83,14 +83,14 @@ include 'zzz-dbConnect.php';
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
 
-                                <?php
-                                $sql = 'select * from Post where Cat_ID=1 order by Post_ID DESC LIMIT 1';
+                            <?php
+                                $sql = 'select * from Post, user where Cat_ID=1 and user.ID=post.User_ID order by Post_ID DESC LIMIT 1';
                                 $result = mysqli_query($link, $sql);
                                 $row = mysqli_fetch_array($result);
-
-
-                        
-
+                                
+                                $who = '';
+                                if ($row['UserType'] == 'Admin') $who = 'Admin';
+                                else $who = $row['Username'];
                                 ?>
                                 <div class="carousel-item active">
                                     <img src="<?php echo $row['Image'] ?>" class="d-block w-100" alt="picture">
@@ -111,9 +111,13 @@ include 'zzz-dbConnect.php';
 
                                 <div class="carousel-item">
                                 <?php
-                                $sql = 'select * from Post where Cat_ID=2 order by Post_ID DESC LIMIT 1';
+                                $sql = 'select * from Post, user where Cat_ID=2 and user.ID=post.User_ID order by Post_ID DESC LIMIT 1';
                                 $result = mysqli_query($link, $sql);
                                 $row = mysqli_fetch_array($result);
+                                
+                                $who = '';
+                                if ($row['UserType'] == 'Admin') $who = 'Admin';
+                                else $who = $row['Username'];
                                 ?>
                                 <img src="<?php echo $row['Image'] ?>" class="d-block w-100" alt="picture">
                                     <div class="main-stories-btn">

@@ -1534,15 +1534,17 @@ body {
 	padding: 10px 0px;
 }
 
-.contact form input[type="submit"] {
+.contact form button {
 	margin-top: 30px;
 	padding: 10px 30px;
 	text-transform: uppercase;
 	color: #fff;
 	cursor: pointer;
+	border: none;
+	background-color: #8E8E8E;
 }
 
-.contact form input[type="submit"]:hover {
+.contact form button:hover {
 	background: #C80000;
 	transition: .7s;
 }
@@ -1868,7 +1870,7 @@ body {
 
 
 
-
+/* ================ admin-page ================== */
 
 
  .admin-page-area{
@@ -2003,4 +2005,119 @@ body {
 .manage-runing-post table{
 	margin-top: 30px;
 
+}
+.clear-old-news{
+	margin: 40px 0px;
+}
+.clear-old-news button{
+	border: none;
+	height: 50px;
+	width: 220px;
+	color: #C80000;
+	font-size: 20px;
+	font-weight: 700;
+	transition: .5s;
+	
+}
+.clear-old-news button:hover{
+	border: none;
+	height: 50px;
+	width: 220px;
+	color: #fff;
+	background-color:#C80000;
+	font-size: 20px;
+	font-weight: 700;
+	transition: .5s;
+}
+.massage-from-user{}
+.all-massage{}
+.all-massage a{}
+.msg-user-id{}
+.msg-user-id p{}
+.msg-subject{}
+.msg-subject p{}
+.massage{}
+.massage p{}
+.line{
+	height: 1px;
+	width: 90%;
+	background-color: #313131;
+	text-align: center;
+	margin: 30px 0px;
+}
+
+
+
+
+
+
+
+/* ================ profile-page ================== */
+
+
+.user-profile-area{}
+.user-profile-top{
+	position: relative;
+}
+.cover-photo{
+	position: relative;
+
+}
+.cover-photo img{
+	height: 300px;
+	width: 100%;
+}
+.cover-photo-overlay{
+	position: absolute;
+	top: 10%;
+	left: 5%;
+	border-radius: 5px;
+	border: 3px solid #212529;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.cover-photo-overlay i{
+	padding-right: 5px;
+}
+.profile-photo{
+	position: absolute;
+	top: 55%;
+	left: 10%;
+	height: 170px;
+	width: 170px;
+	
+	
+}
+.profile-photo img{
+	height: 170px;
+	width: 170px;
+	border-radius: 50%;
+	border: 5px solid #C80000;
+	position: relative;
+}
+.profile-photo-overlay{
+	position: absolute;
+	top: 60%;
+	left: 85%;
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	background-color: #313131;
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.profile-photo-overlay i{
+	color: #fff;
+}
+.user-name{
+	position: absolute;
+	top: 80%;
+	left: 25%;
+}
+.user-name h2{
+	font-weight: 600;
+	color: #fff;
 }
