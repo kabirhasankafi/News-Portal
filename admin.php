@@ -169,12 +169,11 @@ if (isset($_POST['post'])) {
                                             while ($row = mysqli_fetch_array($result)) {
 
                                                 $start_date = strtotime($row['DateTime']);
-                        
-                                                if (($end_date - $start_date) / 60 / 60 / 24 >= 3) {
-                        
-                                                    $sql = 'delete from post where Post_ID='.$row['Post_ID'];
-                                                    mysqli_query($link, $sql);
 
+                                                if (($end_date - $start_date) / 60 / 60 / 24 >= 3) {
+
+                                                    $sql = 'delete from post where Post_ID=' . $row['Post_ID'];
+                                                    mysqli_query($link, $sql);
                                                 }
                                             }
                                         }
@@ -208,9 +207,9 @@ if (isset($_POST['post'])) {
 
                                 <!-- Delete post -->
                                 <div class="clear-old-news">
-                                  <form method="POST">
-                                    <button type="submit" name="deleteOldPost">Delete old news</button>
-                                  </form>
+                                    <form method="POST">
+                                        <button type="submit" name="deleteOldPost">Delete old news</button>
+                                    </form>
                                 </div>
                             </div>
 
@@ -232,10 +231,10 @@ if (isset($_POST['post'])) {
 
                                     <div class="all-massage">
                                         <div class="msg-user-id">
-                                            <p><b><i class="fas fa-user"></i>   <?php echo $row['Username'] ?></b></p>
+                                            <p><b><i class="fas fa-user"></i> <?php echo $row['Username'] ?></b></p>
                                         </div>
                                         <div class="msg-subject">
-                                            <p><b>Subject:  </b><?php echo $row['Subject'] ?></p>
+                                            <p><b>Subject: </b><?php echo $row['Subject'] ?></p>
                                         </div>
                                         <div class="massage">
                                             <p><?php echo $row['Message'] ?></p>
@@ -259,6 +258,46 @@ if (isset($_POST['post'])) {
             </div>
         </div>
     </div>
+
+
+
+    <div>
+        <ul>
+            <li><a onclick="hideFunction('1')" >Hi</a></li>
+            <li><a onclick="hideFunction('2')" >Buy</a></li>
+            <li><a onclick="hideFunction('3')" >Okay</a></li>
+            <li><a onclick="hideFunction('4')" >Great</a></li>
+        </ul>
+    </div>
+
+    <div id="1">
+        <p>Hi div</p>
+    </div>
+    <div id="2">
+        <p>Buy div</p>
+    </div>
+    <div id="3">
+        <p>Okay div</p>
+    </div>
+    <div id="4">
+        <p>Great div</p>
+    </div>
+
+    <script>
+        function hideFunction(textID) {
+            var x = document.getElementById(textID);
+
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            }
+            else {
+                x.style.display = "none";
+            }
+        }
+
+    </script>
+
+
 
     <div class="arrow-top"> <i class="fas fa-arrow-up"></i> </div>
 
