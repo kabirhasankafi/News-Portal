@@ -81,25 +81,32 @@ if (isset($_POST['post'])) {
     <div class="admin-page-area">
 
         <div class="row">
+
+            <!-- Admin Menu -->
             <div class="col-md-3">
                 <div class="admin-area-left">
                     <div class="admin-area-left-title">
                         <h3>Admin Panel</h3>
                     </div>
 
-                    <div class="button-group filter-button-group">
-                        <button data-filter="*" class="active">All</button> <br>
-                        <button data-filter=".newpost">Add New Post</button> <br>
-                        <button data-filter=".runningpost">Running Post</button> <br>
-                        <button data-filter=".postrequest">Post Request</button> <br>
-                        <button data-filter=".massage">Massage</button>
+                    <div>
+                        <ul>
+                            
+                            <li><a onclick="hideFunction('newpost')">Add New Post</a></li>
+                            <li><a onclick="hideFunction('runningpost')">Running Post</a></li>
+                            <li><a onclick="hideFunction('massage')">Message</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Admin menu details -->
             <div class="col-md-9">
                 <div class="admin-area-right">
                     <div class="row grid">
-                        <div class="col-md-12 grid-item newpost">
+
+                        <!-- New Post -->
+                        <div class="col-md-12 grid-item" id="newpost">
                             <div class="add-post">
                                 <div class="admin-section-title">
                                     <h2>Add New Post</h2>
@@ -139,7 +146,7 @@ if (isset($_POST['post'])) {
                         </div>
 
                         <!-- Running Post -->
-                        <div class="col-md-12 grid-item runningpost" id="runningPost">
+                        <div class="col-md-12 grid-item" id="runningpost">
                             <div class="manage-runing-post">
                                 <div class="admin-section-title">
                                     <h2>Running Post</h2>
@@ -158,33 +165,33 @@ if (isset($_POST['post'])) {
                                     <tbody>
 
                                         <?php
-                                        if (isset($_POST['deleteOldPost'])) {
-                                            $sql = 'select * from post';
-                                            $result = mysqli_query($link, $sql);
+                                            if (isset($_POST['deleteOldPost'])) {
+                                                $sql = 'select * from post';
+                                                $result = mysqli_query($link, $sql);
 
-                                            $date = date_create();
-                                            $endDateTemp = date_format($date, "d-m-Y");
-                                            $end_date = strtotime($endDateTemp); //Today date-time
+                                                $date = date_create();
+                                                $endDateTemp = date_format($date, "d-m-Y");
+                                                $end_date = strtotime($endDateTemp); //Today date-time
 
-                                            while ($row = mysqli_fetch_array($result)) {
+                                                while ($row = mysqli_fetch_array($result)) {
 
-                                                $start_date = strtotime($row['DateTime']);
+                                                    $start_date = strtotime($row['DateTime']);
 
-                                                if (($end_date - $start_date) / 60 / 60 / 24 >= 3) {
+                                                    if (($end_date - $start_date) / 60 / 60 / 24 >= 3) {
 
-                                                    $sql = 'delete from post where Post_ID=' . $row['Post_ID'];
-                                                    mysqli_query($link, $sql);
+                                                        $sql = 'delete from post where Post_ID=' . $row['Post_ID'];
+                                                        mysqli_query($link, $sql);
+                                                    }
                                                 }
                                             }
-                                        }
 
-                                        $sql = 'select * from Post, user, category where post.User_ID=user.ID and post.Cat_ID=category.Cat_ID ORDER by Post_ID DESC';
-                                        $run = mysqli_query($link, $sql);
-                                        while ($row = mysqli_fetch_assoc($run)) {
-                                            $who = '';
-                                            if ($row['UserType'] == "Admin") $who = 'Admin';
-                                            else $who = $row['Username'];
-                                            ?>
+                                            $sql = 'select * from Post, user, category where post.User_ID=user.ID and post.Cat_ID=category.Cat_ID ORDER by Post_ID DESC';
+                                            $run = mysqli_query($link, $sql);
+                                            while ($row = mysqli_fetch_assoc($run)) {
+                                                $who = '';
+                                                if ($row['UserType'] == "Admin") $who = 'Admin';
+                                                else $who = $row['Username'];
+                                        ?>
                                             <tr>
                                                 <td>
                                                     <p><?php echo $row['Title'] ?></p>
@@ -212,22 +219,21 @@ if (isset($_POST['post'])) {
                                     </form>
                                 </div>
                             </div>
-
                         </div>
 
                         <!-- Message part -->
-                        <div class="col-md-12 grid-item postrequest">
+                        <div class="col-md-12 grid-item" id="massage">
                             <div class="massage-from-user">
                                 <div class="admin-section-title">
-                                    <h2>Massage</h2>
+                                    <h2>Message</h2>
                                 </div>
 
                                 <?php
-                                $sql = 'select * from contact where Status=0';
-                                $result = mysqli_query($link, $sql);
+                                                                                $sql = 'select * from contact where Status=0';
+                                                                                $result = mysqli_query($link, $sql);
 
-                                while ($row = mysqli_fetch_array($result)) {
-                                    ?>
+                                                                                while ($row = mysqli_fetch_array($result)) {
+                                ?>
 
                                     <div class="all-massage">
                                         <div class="msg-user-id">
@@ -239,10 +245,6 @@ if (isset($_POST['post'])) {
                                         <div class="massage">
                                             <p><?php echo $row['Message'] ?></p>
                                         </div>
-                                        <!-- <div class="msg-reply">
-                                            <textarea name="reply" id="" cols="90" rows="5"></textarea>
-                                        </div>
-                                        <button type="submit" name="send">Send</button> -->
                                         <a href="messageReply.php?mid=<?php echo $row['Con_ID'] ?>">Reply</a>
                                     </div>
                                     <div class="line"></div>
@@ -251,60 +253,33 @@ if (isset($_POST['post'])) {
                             </div>
                         </div>
 
-                        <div class="col-md-12 grid-item massage"> </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-
-    <div>
-        <ul>
-            <li><a onclick="hideFunction('1')" >Hi</a></li>
-            <li><a onclick="hideFunction('2')" >Buy</a></li>
-            <li><a onclick="hideFunction('3')" >Okay</a></li>
-            <li><a onclick="hideFunction('4')" >Great</a></li>
-        </ul>
-    </div>
-
-    <div id="1">
-        <p>Hi div</p>
-    </div>
-    <div id="2">
-        <p>Buy div</p>
-    </div>
-    <div id="3">
-        <p>Okay div</p>
-    </div>
-    <div id="4">
-        <p>Great div</p>
-    </div>
-
+    <div class="arrow-top"> <i class="fas fa-arrow-up"></i> </div>
+    
     <script>
         function hideFunction(textID) {
-            var x = document.getElementById(textID);
 
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            }
-            else {
-                x.style.display = "none";
-            }
+            console.log(textID);
+            
+            document.getElementById("newpost").style.display = "none";
+            
+            var x = document.getElementById("runningpost");
+            x.style.display = "none";
+
+            x = document.getElementById("massage");
+            x.style.display = "none";
+
+            document.getElementById(textID).style.display = "block";
         }
-
     </script>
-
-
-
-    <div class="arrow-top"> <i class="fas fa-arrow-up"></i> </div>
-
-
+   
 
     <!-- link-area-start -->
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
