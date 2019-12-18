@@ -42,10 +42,47 @@ if(!isset($_SESSION['ID'])){
                 <h2>User Name</h2>
         </div>
         <div class="profile-menu">
-                
+            <ul class="nav justify-content-center">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Home</a></li>
+            </ul> 
         </div>
     </div>
-    <div class="user-profile-bottom"></div>
+    <div class="user-profile-bottom">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="user-details">
+                    <div class="user-intro">
+                        <span>
+                            <i class="fas fa-globe"></i>
+                            <h5>Introduction</h5>
+                        </span>
+                        <p>“I'm passionate about learning. I'm passionate about life.”</p>
+                        <a href="#">Edit Bio</a>
+                    </div>
+                    <div class="uesr-detail">
+                        <div class="user-work">
+                              <i class="fas fa-briefcase"></i>
+                              <p>Work at Fiverr</p>
+                        </div>
+                        <div class="user-studies">
+                              <i class="fas fa-graduation-cap"></i>
+                              <p>Work at Fiverr</p>
+                        </div>
+                        <div class="user-address">
+                              <i class="fas fa-home"></i>
+                              <p>Work at Fiverr</p>
+                        </div>
+                        <a href="#">Edit Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9"></div>
+        </div>
+    </div>
 </div>
 
 

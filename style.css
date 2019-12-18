@@ -2081,7 +2081,7 @@ body {
 }
 .profile-photo{
 	position: absolute;
-	top: 55%;
+	top: 42%;
 	left: 10%;
 	height: 170px;
 	width: 170px;
@@ -2114,10 +2114,52 @@ body {
 }
 .user-name{
 	position: absolute;
-	top: 80%;
+	top: 70%;
 	left: 25%;
 }
 .user-name h2{
 	font-weight: 600;
 	color: #fff;
 }
+.profile-menu{
+	background-color: #fff;
+}
+.profile-menu ul{}
+.profile-menu ul li{
+	padding: 10px 40px;
+	transition: 1s;
+	border-right: 1px solid #999999;
+}
+.profile-menu ul li:hover{
+	padding: 10px 40px;
+	background-color: #cccccc;
+}
+.profile-menu ul li a{
+	text-decoration: none;
+	color: #000;
+	font-weight: 700;
+
+}
+.user-profile-bottom{
+	margin: 20px 40px;
+}
+.user-details{
+	padding-left: 10px;
+	background-color: #fff;
+	
+}
+.user-intro{
+	padding-top: 20px;
+}
+.user-intro span{
+	display: flex;
+}
+.user-intro span i{
+	padding-top: 5px;
+	padding-right: 5px;
+}
+.user-intro span h5{
+
+}
+.user-intro span p{}
+.user-intro span a{}
