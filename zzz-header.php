@@ -15,7 +15,7 @@
                         <?php if (isset($_SESSION['ID'])) {
                             echo '<li><a href="my-profile.php"> <i class="fas fa-user-circle" id="user-profile"></i> </a></li>';
                             echo '<li><a href="my-profile.php">' . $_SESSION["Username"] . '</a></li>';
-                            ?>
+                        ?>
                             <li><span></span></li>
                         <?php
                         } else {
@@ -82,10 +82,12 @@
             <div class="col-md-4">
                 <div class="wrapper">
                     <div class="search-box">
-                        <input type="text" placeholder="Search Here" class="input">
-                        <div class="btn">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </div>
+                        <form action="search-result.php" method="GET">
+                            <input type="text" name="search" placeholder="Search Here">
+                            <div class="btn">
+                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

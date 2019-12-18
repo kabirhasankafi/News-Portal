@@ -12,19 +12,26 @@ if (isset($_POST["signup"])) {
     $_SESSION['tEmail'] = $_POST["email"];
 
     if ($_POST["password"] == $_POST["cpassword"]) {
-        $sql = "SELECT ID FROM user where Username='" . $_POST["username"] . "'";
+        $sql = "SELECT ID FROM user where Username='" . $_POST["username"] . "' and Email='".$_POST["email"]."'";
         $result = mysqli_query($link, $sql);
         $count = mysqli_num_rows($result);
 
         if ($count == 0) {
-            $sql = "INSERT into user (Username, Email, Password, UserType) values ('" . $_POST["username"] . "', '" . $_POST["email"] . "', '" . $_POST["password"] . "', 'User')";
+            $random = rand(1000, 9999);
+
+            $sql = "INSERT into user (Username, Email, Password, UserType, Code) values ('" . $_POST["username"] . "', '" . $_POST["email"] . "', '" . $_POST["password"] . "', 'User', '" . $random . "')";
             mysqli_query($link, $sql);
 
             $_SESSION['tUsername'] = "";
             $_SESSION['tEmail'] = "";
 
+            $replyText = 'http://localhost/onlineportal/varification.php?email='.$_POST["email"];
+            // $replyText = 'http://localhost/ishan/NewsPortal/varification.php?email='.$_POST["email"];
 
-            header('Location: login-signup.php');
+            $url = 'http://mailsender.ap-south-1.elasticbeanstalk.com/SendMail/var.php?rec=' . $_POST["email"] . '&reply=' . $replyText;
+
+            header('Location: '.$url);
+
         } else {
             $error = 'Username already taken, try again to register';
             echo "<script type='text/javascript'>alert('$error');</script>";
@@ -40,13 +47,20 @@ if (isset($_POST["login"])) {
 
     if ($count == 1) {
         $row = mysqli_fetch_assoc($result);
+        if ($row['Code'] == 0) {
+            $_SESSION['ID'] = $row['ID'];
+            $_SESSION['Username'] = $row['Username'];
+            $_SESSION['Email'] = $row['Email'];
+            $_SESSION['UserType'] = $row['UserType'];
 
-        $_SESSION['ID'] = $row['ID'];
-        $_SESSION['Username'] = $row['Username'];
-        $_SESSION['Email'] = $row['Email'];
-        $_SESSION['UserType'] = $row['UserType'];
-
-        header('Location: index.php');
+            header('Location: index.php');
+        } else {
+            $message = "Verify your profile from you mail";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+    } else {
+        $message = "Invalid username or password";
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
 
