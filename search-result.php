@@ -43,15 +43,15 @@ if (isset($_GET['search'])) {
                 $sql = "select * from post, category, user where post.User_ID=user.ID and post.Cat_ID=category.Cat_ID and post.Title LIKE '%" . $search . "%'";
                 $result = mysqli_query($link, $sql);
 
-                $date = date_create();
-                $endDateTemp = date_format($date, "d-m-Y");
-                $end_date = strtotime($endDateTemp);
+               // $date = date_create();
+               // $endDateTemp = date_format($date, "d-m-Y");
+               // $end_date = strtotime($endDateTemp);
 
                 while ($row = mysqli_fetch_assoc($result)) {
 
-                    $start_date = strtotime($row['DateTime']);
+                  //  $start_date = strtotime($row['DateTime']);
 
-                    if (($end_date - $start_date) / 60 / 60 / 24 < 3) {
+                  //  if (($end_date - $start_date) / 60 / 60 / 24 < 3) {
 
                         $sql = 'select Username, UserType from user where ID="' . $row['User_ID'] . '"';
                         $userRes = mysqli_query($link, $sql);
@@ -85,7 +85,7 @@ if (isset($_GET['search'])) {
                             </div>
                         </div>
                         <!-- Post End -->
-                <?php }
+                <?php 
                 }
                 ?>
             </div>

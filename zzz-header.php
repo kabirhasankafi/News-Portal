@@ -83,9 +83,9 @@
                 <div class="wrapper">
                     <div class="search-box">
                         <form action="search-result.php" method="GET">
-                            <input type="text" name="search" placeholder="Search Here">
+                            <input class="searchTerm" type="text" name="search" placeholder="Search Here" required>
                             <div class="btn">
-                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                <button class="searchButton" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
                         </form>
                     </div>

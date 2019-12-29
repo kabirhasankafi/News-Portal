@@ -30,7 +30,7 @@
     $('.arrow-top').click(function () {
         $('html').animate({
             'scrollTop': '0'
-        }, 2000);
+        }, 1000);
     })
 
 
@@ -73,7 +73,6 @@
       .catch( error => {
           console.log( error );
       } );
-
 
 
 

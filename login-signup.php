@@ -17,7 +17,8 @@ if (isset($_POST["signup"])) {
         $count = mysqli_num_rows($result);
 
         if ($count == 0) {
-            $random = rand(1000, 9999);
+            //$random = rand(1000, 9999);
+            $random = 0;
 
             $sql = "INSERT into user (Username, Email, Password, UserType, Code) values ('" . $_POST["username"] . "', '" . $_POST["email"] . "', '" . $_POST["password"] . "', 'User', '" . $random . "')";
             mysqli_query($link, $sql);

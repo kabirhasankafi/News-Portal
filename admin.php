@@ -89,12 +89,12 @@ if (isset($_POST['post'])) {
                         <h3>Admin Panel</h3>
                     </div>
 
-                    <div>
+                    <div class="admin-button-group">
                         <ul>
-                            
-                            <li><a onclick="hideFunction('newpost')">Add New Post</a></li>
-                            <li><a onclick="hideFunction('runningpost')">Running Post</a></li>
-                            <li><a onclick="hideFunction('massage')">Message</a></li>
+                            <button><a onclick="hideFunction('newpost')">Add New Post</a></button>
+                            <button><a onclick="hideFunction('runningpost')">Running Post</a></button>
+                            <button><a onclick="hideFunction('massage')">Message</a></button>
+                            <button><a onclick="hideFunction('post-request')">Post Request</a></button>
                         </ul>
                     </div>
                 </div>
@@ -212,12 +212,8 @@ if (isset($_POST['post'])) {
                                     </tbody>
                                 </table>
 
-                                <!-- Delete post -->
-                                <div class="clear-old-news">
-                                    <form method="POST">
-                                        <button type="submit" name="deleteOldPost">Delete old news</button>
-                                    </form>
-                                </div>
+                           
+                               
                             </div>
                         </div>
 
@@ -229,10 +225,10 @@ if (isset($_POST['post'])) {
                                 </div>
 
                                 <?php
-                                                                                $sql = 'select * from contact where Status=0';
-                                                                                $result = mysqli_query($link, $sql);
+                                        $sql = 'select * from contact where Status=0';
+                                        $result = mysqli_query($link, $sql);
 
-                                                                                while ($row = mysqli_fetch_array($result)) {
+                                        while ($row = mysqli_fetch_array($result)) {
                                 ?>
 
                                     <div class="all-massage">
@@ -250,6 +246,52 @@ if (isset($_POST['post'])) {
                                     <div class="line"></div>
                                 <?php } ?>
 
+                            </div>
+                        </div>
+
+                        <!-- Post-Request -->
+
+                        <div class="col-md-12 grid-item" id="post-request">
+                            <div class="manage-post-request">
+                                <div class="admin-section-title">
+                                    <h2>Post Request</h2>
+                                </div>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Author</th>
+                                            <th scope="col">Details</th>
+                                            <th scope="col">Approve</th>
+                                            <th scope="col">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                       
+                                            <tr>
+                                                <td>
+                                                    <p></p>
+                                                </td>
+                                                <td>
+                                                    <P></P>
+                                                </td>
+                                                <td>
+                                                    <p></p>
+                                                </td>
+                                                <td>
+                                                    <p></p>
+                                                </td>
+                                                <td><a href=""><i class="far fa-trash-alt"></i></a></td>
+                                            </tr>
+                                       
+
+                                    </tbody>
+                                </table>
+
+                           
+                               
                             </div>
                         </div>
 
@@ -272,6 +314,9 @@ if (isset($_POST['post'])) {
             x.style.display = "none";
 
             x = document.getElementById("massage");
+            x.style.display = "none";
+
+            x = document.getElementById("post-request");
             x.style.display = "none";
 
             document.getElementById(textID).style.display = "block";
