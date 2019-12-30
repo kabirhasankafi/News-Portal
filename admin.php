@@ -44,7 +44,7 @@ if (isset($_POST['post'])) {
     // Image upload code end
 
     // Insert sql for new post
-    $sql = 'INSERT into post (Title, User_ID, Cat_ID, Description, Image, DateTime) values ("' . $title . '", "' . $_SESSION['ID'] . '", "' . $catID . '", "' . $des . '", "' . $fileDestination . '", "' . date_format($date, "d-m-Y") . '")';
+    $sql = 'INSERT into post (Title, User_ID, Approved,Cat_ID, Description, Image, DateTime) values ("' . $title . '", "' . $_SESSION['ID'] . '", "1","' . $catID . '", "' . $des . '", "' . $fileDestination . '", "' . date_format($date, "d-m-Y") . '")';
     mysqli_query($link, $sql);
     header('Location: index.php');
 }

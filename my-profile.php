@@ -176,8 +176,13 @@ if (isset($_POST['post'])) {
     // Image upload code end
 
     // Insert sql for new post
-    $sql = 'INSERT into post (Title, Approved, User_ID, Cat_ID, Description, Image, DateTime) values ("' . $title . '","0", "' . $_SESSION['ID'] . '", "' . $catID . '", "' . $des . '", "' . $fileDestination . '", "' . date_format($date, "d-m-Y") . '")';
-    mysqli_query($link, $sql);
+    $sql = '';
+    if($_SESSION['UserType'] == "User"){
+        $sql = 'INSERT into post (Title, Approved, User_ID, Cat_ID, Description, Image, DateTime) values ("' . $title . '","0", "' . $_SESSION['ID'] . '", "' . $catID . '", "' . $des . '", "' . $fileDestination . '", "' . date_format($date, "d-m-Y") . '")';
+    }else{
+        $sql = 'INSERT into post (Title, Approved, User_ID, Cat_ID, Description, Image, DateTime) values ("' . $title . '","1", "' . $_SESSION['ID'] . '", "' . $catID . '", "' . $des . '", "' . $fileDestination . '", "' . date_format($date, "d-m-Y") . '")';
+    }
+        mysqli_query($link, $sql);
     header('Location: index.php');
 }
 ?>
