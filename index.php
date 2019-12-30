@@ -84,7 +84,7 @@ include 'zzz-dbConnect.php';
                             <div class="carousel-inner">
 
                             <?php
-                                $sql = 'select * from Post, user where Cat_ID=1 and user.ID=post.User_ID order by Post_ID DESC LIMIT 1';
+                                $sql = 'select * from Post, user where post.Approved=1 and Cat_ID=1 and user.ID=post.User_ID order by Post_ID DESC LIMIT 1';
                                 $result = mysqli_query($link, $sql);
                                 $row = mysqli_fetch_array($result);
                                 
@@ -111,7 +111,7 @@ include 'zzz-dbConnect.php';
 
                                 <div class="carousel-item">
                                 <?php
-                                $sql = 'select * from Post, user where Cat_ID=2 and user.ID=post.User_ID order by Post_ID DESC LIMIT 1';
+                                $sql = 'select * from Post, user where post.Approved=1 and Cat_ID=2 and user.ID=post.User_ID order by Post_ID DESC LIMIT 1';
                                 $result = mysqli_query($link, $sql);
                                 $row = mysqli_fetch_array($result);
                                 
@@ -135,7 +135,7 @@ include 'zzz-dbConnect.php';
 
                                 <div class="carousel-item">
                                 <?php
-                                $sql = 'select * from Post, user where Cat_ID=4 and user.ID=post.User_ID order by Post_ID DESC LIMIT 1';
+                                $sql = 'select * from Post, user where post.Approved=1 and Cat_ID=4 and user.ID=post.User_ID order by Post_ID DESC LIMIT 1';
                                 $result = mysqli_query($link, $sql);
                                 $row = mysqli_fetch_array($result);
                                 
@@ -179,7 +179,7 @@ include 'zzz-dbConnect.php';
                             <div class="edidors-pick">
                                 <?php
 
-                                $sql = 'select * from post, user where Cat_ID=8 order by Post_ID desc limit 1';
+                                $sql = 'select * from post, user where post.Approved=1 and Cat_ID=8 order by Post_ID desc limit 1';
                                 $result = mysqli_query($link, $sql);
                                 $row = mysqli_fetch_array($result);
 
@@ -209,7 +209,7 @@ include 'zzz-dbConnect.php';
                                 <h6>National</h6>
                             </div>
                             <?php
-                            $sql = 'SELECT * FROM post, user where Cat_ID=1 and user.ID=post.User_ID order by Post_ID DESC LIMIT 2';
+                            $sql = 'SELECT * FROM post, user where post.Approved=1 and Cat_ID=1 and user.ID=post.User_ID order by Post_ID DESC LIMIT 2';
                             $result = mysqli_query($link, $sql);
 
 
@@ -274,7 +274,7 @@ include 'zzz-dbConnect.php';
                         <div class="health-stories-area">
 
                             <?php
-                            $sql = 'select * from post, user where Cat_ID=5 order by Post_ID desc limit 1';
+                            $sql = 'select * from post, user where post.Approved=1 and Cat_ID=5 order by Post_ID desc limit 1';
                             $result = mysqli_query($link, $sql);
                             $row = mysqli_fetch_array($result);
 
@@ -309,7 +309,7 @@ include 'zzz-dbConnect.php';
                         <div class="technology-stories-area">
 
                             <?php
-                            $sql = 'select * from post, user where Cat_ID=6 order by Post_ID desc limit 1';
+                            $sql = 'select * from post, user where post.Approved=1 and Cat_ID=6 order by Post_ID desc limit 1';
                             $result = mysqli_query($link, $sql);
                             $row = mysqli_fetch_array($result);
 
@@ -347,7 +347,7 @@ include 'zzz-dbConnect.php';
                     </div>
                     <div class="sports-area">
                         <?php
-                        $sql = 'select * from post, user where Cat_ID=3 order by Post_ID desc limit 1';
+                        $sql = 'select * from post, user where post.Approved=1 and Cat_ID=3 order by Post_ID desc limit 1';
                         $result = mysqli_query($link, $sql);
                         $row = mysqli_fetch_array($result);
 

@@ -165,32 +165,12 @@ if (isset($_POST['post'])) {
                                     <tbody>
 
                                         <?php
-                                            if (isset($_POST['deleteOldPost'])) {
-                                                $sql = 'select * from post';
-                                                $result = mysqli_query($link, $sql);
-
-                                                $date = date_create();
-                                                $endDateTemp = date_format($date, "d-m-Y");
-                                                $end_date = strtotime($endDateTemp); //Today date-time
-
-                                                while ($row = mysqli_fetch_array($result)) {
-
-                                                    $start_date = strtotime($row['DateTime']);
-
-                                                    if (($end_date - $start_date) / 60 / 60 / 24 >= 3) {
-
-                                                        $sql = 'delete from post where Post_ID=' . $row['Post_ID'];
-                                                        mysqli_query($link, $sql);
-                                                    }
-                                                }
-                                            }
-
-                                            $sql = 'select * from Post, user, category where post.User_ID=user.ID and post.Cat_ID=category.Cat_ID ORDER by Post_ID DESC';
-                                            $run = mysqli_query($link, $sql);
-                                            while ($row = mysqli_fetch_assoc($run)) {
-                                                $who = '';
-                                                if ($row['UserType'] == "Admin") $who = 'Admin';
-                                                else $who = $row['Username'];
+                                        $sql = 'select * from Post, user, category where post.Approved=1 and post.User_ID=user.ID and post.Cat_ID=category.Cat_ID ORDER by Post_ID DESC';
+                                        $run = mysqli_query($link, $sql);
+                                        while ($row = mysqli_fetch_assoc($run)) {
+                                            $who = '';
+                                            if ($row['UserType'] == "Admin") $who = 'Admin';
+                                            else $who = $row['Username'];
                                         ?>
                                             <tr>
                                                 <td>
@@ -212,8 +192,8 @@ if (isset($_POST['post'])) {
                                     </tbody>
                                 </table>
 
-                           
-                               
+
+
                             </div>
                         </div>
 
@@ -225,10 +205,10 @@ if (isset($_POST['post'])) {
                                 </div>
 
                                 <?php
-                                        $sql = 'select * from contact where Status=0';
-                                        $result = mysqli_query($link, $sql);
+                                $sql = 'select * from contact where Status=0';
+                                $result = mysqli_query($link, $sql);
 
-                                        while ($row = mysqli_fetch_array($result)) {
+                                while ($row = mysqli_fetch_array($result)) {
                                 ?>
 
                                     <div class="all-massage">
@@ -257,41 +237,47 @@ if (isset($_POST['post'])) {
                                     <h2>Post Request</h2>
                                 </div>
 
+                                <!-- Post request table -->
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th scope="col">Title</th>
                                             <th scope="col">Author</th>
-                                            <th scope="col">Details</th>
-                                            <th scope="col">Approve</th>
+                                            <th scope="col">Post Date</th>
+                                            <th scope="col">Approved</th>
                                             <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                       
+                                        <?php
+
+                                        $sql = 'select * from Post, user, category where post.Approved=0 and post.User_ID=user.ID and post.Cat_ID=category.Cat_ID ORDER by Post_ID DESC';
+                                        $run = mysqli_query($link, $sql);
+                                        while ($row = mysqli_fetch_assoc($run)) {
+                                            $who = '';
+                                            if ($row['UserType'] == "Admin") $who = 'Admin';
+                                            else $who = $row['Username'];
+                                        ?>
                                             <tr>
                                                 <td>
-                                                    <p></p>
+                                                    <p><a href="single.php?pid=<?php echo $row['Post_ID'] ?>"><?php echo $row['Title'] ?></a></p>
                                                 </td>
                                                 <td>
-                                                    <P></P>
+                                                    <p><?php echo $who; ?></p>
                                                 </td>
                                                 <td>
-                                                    <p></p>
+                                                    <p><?php echo $row['DateTime'] ?></p>
                                                 </td>
-                                                <td>
-                                                    <p></p>
-                                                </td>
-                                                <td><a href=""><i class="far fa-trash-alt"></i></a></td>
+                                                <td><a href="approvedByAdmin.php?pid=<?php echo $row['Post_ID'] ?>"><i class="far fa-trash-alt"></i></a></td>
+                                                <td><a href="deleteByAdmin.php?pid=<?php echo $row['Post_ID'] ?>"><i class="far fa-trash-alt"></i></a></td>
                                             </tr>
-                                       
+                                        <?php } ?>
 
                                     </tbody>
                                 </table>
 
-                           
-                               
+
                             </div>
                         </div>
 
@@ -302,14 +288,14 @@ if (isset($_POST['post'])) {
     </div>
 
     <div class="arrow-top"> <i class="fas fa-arrow-up"></i> </div>
-    
+
     <script>
         function hideFunction(textID) {
 
             console.log(textID);
-            
+
             document.getElementById("newpost").style.display = "none";
-            
+
             var x = document.getElementById("runningpost");
             x.style.display = "none";
 
@@ -322,7 +308,7 @@ if (isset($_POST['post'])) {
             document.getElementById(textID).style.display = "block";
         }
     </script>
-   
+
 
     <!-- link-area-start -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

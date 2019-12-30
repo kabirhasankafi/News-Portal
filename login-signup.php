@@ -20,7 +20,7 @@ if (isset($_POST["signup"])) {
             //$random = rand(1000, 9999);
             $random = 0;
 
-            $sql = "INSERT into user (Username, Email, Password, UserType, Code) values ('" . $_POST["username"] . "', '" . $_POST["email"] . "', '" . $_POST["password"] . "', 'User', '" . $random . "')";
+            $sql = "INSERT into user (Username, Email, ProfilePic, CoverPic, Password, UserType, Code) values ('" . $_POST["username"] . "', '" . $_POST["email"] . "','lib/upload/5e0a12835dbfa7.31939754.png','lib/upload/5e0a12835dbfa7.31939754.png' ,'" . $_POST["password"] . "', 'User', '" . $random . "')";
             mysqli_query($link, $sql);
 
             $_SESSION['tUsername'] = "";

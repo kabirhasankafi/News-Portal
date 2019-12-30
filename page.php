@@ -39,7 +39,7 @@ session_start();
                 <div class="row">
 
                     <?php
-                    $sql = 'select * from post where Cat_ID=' . $_GET['cid'] . ' ORDER BY Post_ID DESC';
+                    $sql = 'select * from post where Approved="1" and Cat_ID=' . $_GET['cid'] . ' ORDER BY Post_ID DESC';
                     $result = mysqli_query($link, $sql);
 
                     $date = date_create();
